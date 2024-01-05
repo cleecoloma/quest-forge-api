@@ -22,12 +22,12 @@ app.post('/adventure', async (req, res) => {
     if (req.body && Object.keys(req.body).length > 0) {
       const requestBody = req.body;
       response = await axios.post(
-        'https://tjmp838d98.execute-api.us-west-2.amazonaws.com/WorkingPOST/user/1',
+        'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1',
         requestBody
       );
     } else {
       response = await axios.post(
-        'https://tjmp838d98.execute-api.us-west-2.amazonaws.com/WorkingPOST/user/1'
+        'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1'
       );
     }
 
