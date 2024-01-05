@@ -12,33 +12,52 @@ const PORT = process.env.PORT;
 app.use(bodyParser.json());
 app.use(cors());
 
-// Define a route to handle the POST request
-app.post('/adventure', async (req, res) => {
+app.put('/create', async (req, res) => {
   try {
-    // Handle the POST request here
-    console.log("HERE'S THE REQUEST FROM FRONTEND:", req.body);
-    let response;
+    let responseData;
 
-    if (req.body && Object.keys(req.body).length > 0) {
+    if (req.body) {
       const requestBody = req.body;
-      response = await axios.post(
-        'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1',
+      const response = await axios.put(
+        'https://jb8ab1siq1.execute-api.us-west-2.amazonaws.com/initial/create/1',
         requestBody
       );
-    } else {
-      response = await axios.post(
-        'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1'
-      );
+      responseData = response.data;
     }
+    console.log("HERE'S THE RESPONSE DATA:", responseData);
 
-    console.log("HERE'S THE RESPONSE:", response.data);
-    res.json(response.data);
+    res.json(responseData);
   } catch (error) {
     console.error('Error processing the request:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
+// app.post('/quest', async (req, res) => {
+//   try {
+//     console.log("HERE'S THE REQUEST FROM FRONTEND:", req.body);
+//     let response;
+
+//     if (req.body && Object.keys(req.body).length > 0) {
+//       const requestBody = req.body;
+//       response = await axios.post(
+//         'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1',
+//         requestBody
+//       );
+//     } else {
+//       response = await axios.post(
+//         'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1'
+//       );
+//     }
+
+//     console.log("HERE'S THE RESPONSE:", response.data);
+//     res.json(response.data);
+//   } catch (error) {
+//     console.error('Error processing the request:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
+
 app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${port}`);
+  console.log(`Server is running on PORT ${PORT}`);
 });
