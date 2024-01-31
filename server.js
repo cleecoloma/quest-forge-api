@@ -40,6 +40,7 @@ app.put('/create', async (req, res) => {
 
 app.post('/quest', async (req, res) => {
   try {
+    const userName = req.query.name;
     console.log("HERE'S THE REQUEST FROM FRONTEND:", req.body);
     let response;
     const config = {
@@ -51,13 +52,13 @@ app.post('/quest', async (req, res) => {
     if (req.body && Object.keys(req.body).length > 0) {
       const requestBody = req.body;
       response = await axios.post(
-        'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1',
+        `https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start?name=${userName}`,
         requestBody,
         config
       );
     } else {
       response = await axios.post(
-        'https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start/1',
+        `https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start?name=${userName}`,
         {},
         config
       );
