@@ -19,8 +19,12 @@ app.put('/create', async (req, res) => {
 
     if (req.body) {
       const requestBody = req.body;
-      const response = await axios.put(
-        'https://jb8ab1siq1.execute-api.us-west-2.amazonaws.com/initial/create/1',
+      // const response = await axios.put(
+      //   'https://jb8ab1siq1.execute-api.us-west-2.amazonaws.com/initial/create/1',
+      //   requestBody
+      // );
+      const response = await axios.post(
+        'https://jb8ab1siq1.execute-api.us-west-2.amazonaws.com/initial/create',
         requestBody
       );
       responseData = response.data;
