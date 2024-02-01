@@ -13,16 +13,11 @@ const API_KEY = process.env.API_KEY;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.put('/create', async (req, res) => {
+app.post('/create', async (req, res) => {
   try {
     let responseData;
-
     if (req.body) {
       const requestBody = req.body;
-      // const response = await axios.put(
-      //   'https://jb8ab1siq1.execute-api.us-west-2.amazonaws.com/initial/create/1',
-      //   requestBody
-      // );
       const response = await axios.post(
         'https://jb8ab1siq1.execute-api.us-west-2.amazonaws.com/initial/create',
         requestBody
@@ -40,7 +35,7 @@ app.put('/create', async (req, res) => {
 
 app.post('/quest', async (req, res) => {
   try {
-    const userName = req.query.name;
+    const userName = req.body.name;
     console.log("HERE'S THE REQUEST FROM FRONTEND:", req.body);
     let response;
     const config = {
@@ -52,7 +47,7 @@ app.post('/quest', async (req, res) => {
     if (req.body && Object.keys(req.body).length > 0) {
       const requestBody = req.body;
       response = await axios.post(
-        `https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start?name=${userName}`,
+        `https://buig0o4co5.execute-api.us-west-2.amazonaws.com/initial/quest-start?name=${requestBody.name}`,
         requestBody,
         config
       );
